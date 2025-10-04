@@ -1,0 +1,21 @@
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.card {
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.btn-success {
+  background-color: #16a34a !important;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #15803d !important;
+}
+ 
