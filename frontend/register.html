@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register Land | Smart Land Registry</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold text-success" href="index.html">
+      Smart Land Registry
+    </a>
+    <span id="walletAddress" class="fw-semibold text-success"></span>
+  </div>
+  <button class="btn btn-outline-danger btn-sm" id="disconnectWallet">Disconnect</button>
+
+</nav>
+
+
+  <!-- Register Land Section -->
+  <div class="container py-5">
+    <h2 class="text-center mb-4 fw-bold">Register Your Land on Blockchain</h2>
+    <div class="card p-4 shadow-sm">
+      <div class="mb-3">
+        <label for="landNumber" class="form-label fw-semibold">Enter 7/12 Number</label>
+        <input type="text" id="landNumber" class="form-control" placeholder="e.g., MH12-34567" />
+      </div>
+      <div class="d-flex justify-content-between align-items-center">
+        <button id="verifyButton" class="btn btn-success px-4">Verify</button>
+        <div id="statusMessage" class="text-muted small"></div>
+      </div>
+
+      <div id="landDetails" class="mt-4" style="display:none;">
+        <hr>
+        <h5>Verified Property Details</h5>
+        <ul class="list-group mb-3">
+          <li class="list-group-item"><b>Owner:</b> <span id="ownerName"></span></li>
+          <li class="list-group-item"><b>Area:</b> <span id="landArea"></span></li>
+          <li class="list-group-item"><b>Location:</b> <span id="landLocation"></span></li>
+        </ul>
+        <button id="registerButton" class="btn btn-primary w-100" disabled>Register on Blockchain</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center py-3 bg-light mt-5 border-top">
+    <small>© 2025 Smart Land Registry | Blockchain for Transparency</small>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="./js/register.js"></script>
+</body>
+</html>

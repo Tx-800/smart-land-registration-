@@ -1,36 +1,33 @@
-const connectButton = document.getElementById("connectButton");
-const connectHero = document.getElementById("connectHero");
-
+// ✅ connect.js
 async function connectWallet() {
   if (typeof window.ethereum === "undefined") {
-    alert("MetaMask not found! Please install it to continue.");
+    alert("Please install MetaMask to continue!");
     return;
   }
 
   try {
-    // Ask MetaMask to connect
-    await window.ethereum.request({ method: "eth_requestAccounts" });
+    // Request wallet connection
+    const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+    const walletAddress = accounts[0];
 
-    // Use ethers.js provider
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const walletAddress = await signer.getAddress();
+    // Save wallet address in localStorage (used in register.html)
+    localStorage.setItem("connectedWallet", walletAddress);
 
-    console.log("Wallet Connected:", walletAddress);
+    // Update button text immediately
+    document.getElementById("connectButton").textContent =
+      walletAddress.slice(0, 6) + "..." + walletAddress.slice(-4);
 
-    // Update UI
-    connectButton.textContent = `✅ Connected: ${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}`;
-    connectButton.disabled = true;
-
-    if (connectHero) {
-      connectHero.textContent = "✅ Wallet Connected";
-      connectHero.disabled = true;
-    }
+    // Redirect to registration page
+    window.location.href = "register.html";
   } catch (error) {
-    console.error("Error connecting wallet:", error);
+    console.error("Connection failed:", error);
+    alert("Failed to connect wallet.");
   }
 }
 
-// Add event listeners
-connectButton.addEventListener("click", connectWallet);
+// Bind both buttons (in navbar & hero section)
+const connectButton = document.getElementById("connectButton");
+const connectHero = document.getElementById("connectHero");
+
+if (connectButton) connectButton.addEventListener("click", connectWallet);
 if (connectHero) connectHero.addEventListener("click", connectWallet);
